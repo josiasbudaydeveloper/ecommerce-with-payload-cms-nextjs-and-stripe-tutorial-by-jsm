@@ -11,3 +11,13 @@
 .gutterRight {
   padding-right: var(--gutter-h);
 }
+
+@media screen and (max-width: 480px) {
+  .gutterLeft {
+    padding-left: 10px;
+  }
+  
+  .gutterRight {
+    padding-right: 10px;
+  }
+}
