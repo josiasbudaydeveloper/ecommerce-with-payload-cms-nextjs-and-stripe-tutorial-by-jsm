@@ -1,10 +1,7 @@
 @use '../../_css/queries.scss' as *;
 
 .promotion {
-  display: grid;
-  grid-template-columns: 50% 1fr;
-  gap: 30px;
-  margin-bottom: 30px;
+  margin-bottom: -60px;
 
   @include small-break {
     grid-template-columns: 1fr;
@@ -53,7 +50,9 @@
   padding: 16px;
   min-width: 100px;
   width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   h4 {
     font-weight: bold;
