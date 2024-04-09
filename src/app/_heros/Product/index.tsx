@@ -27,7 +27,7 @@ export const ProductHero: React.FC<{
 
         <div className={classes.categoryWrapper}>
           <div className={classes.categories}>
-            {categories?.map((category : Category, index) => {
+            {categories?.map((category: Category, index) => {
               const { title: categoryTitle } = category as Category
 
               const titleToUse = categoryTitle || 'Generic'

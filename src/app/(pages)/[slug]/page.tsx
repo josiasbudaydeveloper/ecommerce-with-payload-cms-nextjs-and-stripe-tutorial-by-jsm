@@ -3,19 +3,19 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Page, Category } from '../../../payload/payload-types'
+import { Category, Page } from '../../../payload/payload-types'
 import { staticHome } from '../../../payload/seed/home-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
-import { Hero } from '../../_components/Hero'
-import { generateMeta } from '../../_utilities/generateMeta'
-import { Gutter } from '../../_components/Gutter'
-
-import classes from './index.module.scss';
 import Categories from '../../_components/Categoris'
-import Promotion from '../../_components/Promotion'
+import { Gutter } from '../../_components/Gutter'
+import { Hero } from '../../_components/Hero'
 import Inclusions from '../../_components/Inclusions'
+import Promotion from '../../_components/Promotion'
+import { generateMeta } from '../../_utilities/generateMeta'
+
+import classes from './index.module.scss'
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -29,7 +29,7 @@ export default async function Page({ params: { slug = 'home' } }) {
   const { isEnabled: isDraftMode } = draftMode()
 
   let page: Page | null = null
-  let categories : Category[] | null = null;
+  let categories: Category[] | null = null
 
   try {
     page = await fetchDoc<Page>({
@@ -38,8 +38,7 @@ export default async function Page({ params: { slug = 'home' } }) {
       draft: isDraftMode,
     })
 
-    categories = await fetchDocs<Category>('categories');
-
+    categories = await fetchDocs<Category>('categories')
   } catch (error) {
     // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // so swallow the error here and simply render the page with fallback data where necessary
@@ -62,7 +61,7 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   return (
     <React.Fragment>
-      { slug === 'home' ? (
+      {slug === 'home' ? (
         <Gutter>
           <Hero {...hero} />
           <div className={classes.home}>
@@ -79,7 +78,7 @@ export default async function Page({ params: { slug = 'home' } }) {
             disableTopPadding={!hero || hero?.type === 'none' || hero?.type === 'lowImpact'}
           />
         </>
-      ) }
+      )}
     </React.Fragment>
   )
 }

@@ -1,51 +1,38 @@
-"use client"
+'use client'
 
-import { usePathname } from "next/navigation";
-import { Footer, Media } from "../../../../payload/payload-types";
-import { noHeaderFooterUrls } from "../../../constants";
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import classes from './index.module.scss';
-import { Gutter } from "../../Gutter";
-import Image from "next/image";
-import Link from "next/link";
+import { Footer, Media } from '../../../../payload/payload-types'
+import { noHeaderFooterUrls } from '../../../constants'
+import { Button } from '../../Button'
+import { Gutter } from '../../Gutter'
 
-import { Button } from "../../Button";
+import classes from './index.module.scss'
 
-export default function FooterComponent({ footer } : {
-  footer : Footer
-}) {
-  const pathname = usePathname();
+export default function FooterComponent({ footer }: { footer: Footer }) {
+  const pathname = usePathname()
 
-  const navItems = footer?.navItems;
+  const navItems = footer?.navItems
 
   return (
-    <footer className={noHeaderFooterUrls.includes(pathname) ? 
-        classes.hide : ''
-      }
-    >
-
+    <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
       <div className={classes.footer}>
         <Gutter>
           <div className={classes.wrap}>
             <Link href="/">
-              <Image
-                src="/logo-white.svg"
-                alt="logo"
-                width={170}
-                height={50}
-              />
+              <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
             </Link>
 
-            <p>
-              {footer.copyright}
-            </p>
+            <p>{footer.copyright}</p>
 
             <div className={classes.socialLinks}>
-              { navItems.map((item) => {
-                const icon = item?.link?.icon as Media;
+              {navItems.map(item => {
+                const icon = item?.link?.icon as Media
 
                 return (
-                  <Button 
+                  <Button
                     key={item.link.label}
                     el="link"
                     href={item.link.url}
@@ -60,7 +47,7 @@ export default function FooterComponent({ footer } : {
                     />
                   </Button>
                 )
-              }) }
+              })}
             </div>
           </div>
         </Gutter>
